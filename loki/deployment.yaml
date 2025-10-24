@@ -13,6 +13,19 @@ spec:
       labels:
         app: loki
     spec:
+      initContainers:
+        - name: init-loki-dirs
+          image: busybox
+          command:
+            - sh
+            - -c
+            - mkdir -p /wal /loki/chunks /loki/index /loki/cache && chmod -R 777 /wal /loki
+          volumeMounts:
+            - name: wal
+              mountPath: /wal
+            - name: chunks
+              mountPath: /loki
+
       containers:
         - name: loki
           image: grafana/loki:2.8.2
@@ -26,6 +39,7 @@ spec:
               mountPath: /wal
             - name: chunks
               mountPath: /loki
+
       volumes:
         - name: config
           configMap:
