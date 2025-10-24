@@ -15,14 +15,22 @@ spec:
     spec:
       containers:
         - name: loki
-          image: grafana/loki:2.8.2   # stable pinned version
+          image: grafana/loki:2.8.2
           args: ["-config.file=/etc/loki/local-config.yaml"]
           ports:
             - containerPort: 3100
           volumeMounts:
             - name: config
               mountPath: /etc/loki
+            - name: wal
+              mountPath: /wal
+            - name: chunks
+              mountPath: /loki
       volumes:
         - name: config
           configMap:
             name: loki-config
+        - name: wal
+          emptyDir: {}
+        - name: chunks
+          emptyDir: {}
