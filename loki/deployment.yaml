@@ -23,7 +23,7 @@ spec:
           volumeMounts:
             - name: wal
               mountPath: /wal
-            - name: chunks
+            - name: loki
               mountPath: /loki
 
       containers:
@@ -37,7 +37,7 @@ spec:
               mountPath: /etc/loki
             - name: wal
               mountPath: /wal
-            - name: chunks
+            - name: loki
               mountPath: /loki
 
       volumes:
@@ -46,5 +46,5 @@ spec:
             name: loki-config
         - name: wal
           emptyDir: {}
-        - name: chunks
+        - name: loki
           emptyDir: {}

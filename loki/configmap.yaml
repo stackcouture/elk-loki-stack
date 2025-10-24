@@ -36,6 +36,8 @@ data:
         cache_location: /loki/cache
       filesystem:
         directory: /loki/chunks
+      wal:
+        directory: /wal
 
     limits_config:
       enforce_metric_name: false
