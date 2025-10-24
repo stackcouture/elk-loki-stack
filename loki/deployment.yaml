@@ -19,7 +19,7 @@ spec:
           command:
             - sh
             - -c
-            - mkdir -p /wal /loki/chunks /loki/index /loki/cache && chmod -R 777 /wal /loki
+            - mkdir -p /wal /loki/chunks /loki/index /loki/cache /loki/compactor && chmod -R 777 /wal /loki
           volumeMounts:
             - name: wal
               mountPath: /wal
