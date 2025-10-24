@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: flog
+  namespace: observability
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: flog
+  template:
+    metadata:
+      labels:
+        app: flog
+    spec:
+      containers:
+        - name: flog
+          image: mingrammer/flog
+          args: ["-f", "json", "-d", "1s", "-l"]
